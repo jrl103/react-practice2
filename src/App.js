@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { TextArea, Input, Button } from "./components";
+import useCompletes from "./useCompletes";
 
 function App() {
+  const input_ref = React.useRef(null);
+// const [text, setText] = React.useState(""); --> Custom Hook으로 바꿔주기
+const [text, setText] = useCompletes("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{
+      display:"flex",
+      gab:"10"
+    }}>
+      <div>
+        <TextArea text={text}/>
+      </div>
+      <div>
+        <Input input_ref={input_ref}/>
+        <Button input_ref={input_ref} setText={setText}/>
+      </div>
     </div>
   );
 }
